@@ -9,8 +9,8 @@ music playback, much like a radio.
 
 To start, ensure the following dependencies are installed:
 ```
-sudo apt-get install mplayer
-sudo pip install youtube_dl praw
+apt-get install mplayer sudo
+pip install youtube_dl praw
 ```
 
 Run the setup script, which will make some directories and set up some crons. 
