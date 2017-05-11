@@ -1,12 +1,11 @@
 #!/bin/bash
 
-USER="pi"
-PASSWORD="raspberry"
 DIR='/srv/mp3'
 LOGDIR='/opt/setup-disk-radio/log'
 
 amixer cset numid=3 1
 # Pipe audio through headphone jack, even if HDMI is connected.
+# You can comment out this line if you're not using a raspberry pi.
 
 while true; do
     NEXTUP=`ls $DIR | shuf -n1`
