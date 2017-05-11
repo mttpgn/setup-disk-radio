@@ -23,3 +23,4 @@ echo "@reboot     $U     /opt/setup-disk-radio/radio-player.sh" >> /etc/crontab
 
 # First run to get some songs
 sudo -u $U python2 /opt/setup-disk-radio/musicscope.py
+sudo -u $U /opt/setup-disk-radio/radio-player.sh

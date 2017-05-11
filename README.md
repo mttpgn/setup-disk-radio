@@ -30,5 +30,5 @@ suit one's personal taste. Good music subreddits can be found [in this list](htt
 
 Raspberry pi users can check [this guide](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md) to make the device portable. 
 
-Without WiFi, the radio will continue to play through the songs in it's cache,
+Without WiFi, the radio will continue to loop through the songs in it's cache,
 but just won't be able to get fresh tracks until the day it's back online.
