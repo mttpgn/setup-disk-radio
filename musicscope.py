@@ -4,9 +4,9 @@ from __future__ import unicode_literals
 import youtube_dl
 import praw
 
-version = '1.1.0'
-clientid = 'XjzpnQAa29cVBg' # I got this from reddit.com once
-clientsecret = 'liWGJ2QPLApdv10_VXzGazvHX-4' # This also reddit.com gave me once
+version = '1.3.0'
+clientid = 'M4t6FAQerQ3hqA' # I got this from reddit.com once
+clientsecret = None  # Registered as an "installed app" so not nesc
 uagent = 'rpi:setup-disk-radio:v'+version+' by /u/mttpgn' # This is made up
 qlDB = 'trends'
 songspath = '/srv/mp3/'
@@ -66,7 +66,6 @@ def dlSong(source, domain):
 def main():
     reddit = praw.Reddit(client_id=clientid, \
                          client_secret=clientsecret, \
-#                         client_secret=None, \
                          user_agent=uagent)
     ctr = 0
     subreddits = [reddit.subreddit(q) for q in subs]
