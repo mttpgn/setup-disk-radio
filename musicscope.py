@@ -18,7 +18,7 @@ options = {
     'noplaylist' : True,        # only download single song, not playlist
 }
 
-with open('subreddits.txt', 'r') as cfg
+with open('subreddits.txt', 'r') as cfg:
     subs = cfg.read().splitlines()
 
 dlim = 150
@@ -66,6 +66,7 @@ def dlSong(source, domain):
 def main():
     reddit = praw.Reddit(client_id=clientid, \
                          client_secret=clientsecret, \
+#                         client_secret=None, \
                          user_agent=uagent)
     ctr = 0
     subreddits = [reddit.subreddit(q) for q in subs]
