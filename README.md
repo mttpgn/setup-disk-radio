@@ -1,27 +1,34 @@
 # setup-disk-radio
 
 setup-disk-radio is program to turn a raspberry pi or any underused Linux/Unix 
-deivce into a radio. 
+deivce into a standalone radio. 
 
 Specifically, this program scrapes music-themed subreddits for new, trending 
-songs, and downloads those songs to be served later in continuous, ad-free
-music playback, much like a radio. 
+songs, and downloads those songs to be served in continuous, ad-free playback, 
+much like a radio. 
 
-To start, ensure the following dependencies are installed:
+To start, ensure the following dependencies are installed on the device you
+wish to transform into a radio:
 ```
 apt-get install mplayer sudo
 pip install youtube_dl praw
 ```
 
-Run the setup script, which will make some directories and set up some crons. 
+Next, run the setup script as root user. 
 
-The radio will pull new music from reddit once per day. 
-Edit the subreddits.txt file with some subreddits you prefer. Some good music 
-subreddits can be found [in this list](https://www.reddit.com/r/Music/wiki/musicsubreddits).
+```
+./setup.sh
+```
 
-If you're choosing your own, I only selected subreddits that:
- * share a musical theme
- * have an active user community
- * post music videos rather than instructional or technical videos
+You can now plug a speaker set into the raspberry pi's audio jack, and enjoy 
+an uninterrupted stream of the hottest new music, pulled daily from reddit. 
+Any time you unplug the device and plug it back, it will pick a new song and 
+resume playing automatically. 
 
-Right now, the radio only pulls songs that were posted from YouTube.
+If desired, the `subreddits.txt` file can be edited with some subreddits to 
+suit one's personal taste. Good music subreddits can be found [in this list](https://www.reddit.com/r/Music/wiki/musicsubreddits).
+
+Raspberry pi users can check [this guide](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md) to make the device portable. 
+
+Without WiFi, the radio will continue to play through the songs in it's cache,
+but just won't be able to get fresh tracks until the day it's back online.
