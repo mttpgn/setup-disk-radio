@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 import youtube_dl
 import praw
 
-version = '1.0.0'
+version = '1.1.0'
 clientid = 'XjzpnQAa29cVBg' # I got this from reddit.com once
 clientsecret = 'liWGJ2QPLApdv10_VXzGazvHX-4' # This also reddit.com gave me once
 uagent = 'rpi:setup-disk-radio:v'+version+' by /u/mttpgn' # This is made up
@@ -13,17 +13,20 @@ songspath = '/srv/mp3/'
 options = {
     'format': 'bestaudio/best', # choice of quality
     'extractaudio' : True,      # only keep the audio
-    'audioformat' : "mp3",      # convert to mp3 
+    'audioformat' : "mp3",      # convert to mp3
     'outtmpl': songspath + '%(id)s',        #name the file the ID of the video
     'noplaylist' : True,        # only download single song, not playlist
 }
-subs = ['EDM','futurebass','glitch','dnb','dubstep','RealDubstep']
+
+with open('subreddits.txt', 'r') as cfg
+    subs = cfg.read().splitlines()
+
 dlim = 150
 
 def dlSong(source, domain):
     with youtube_dl.YoutubeDL(options) as ydl:
         if domain == u'youtu.be':
-            try: 
+            try:
                 name = source.split("be/")[1]
                 if os.path.isfile(name):
                     print "File already exists."
@@ -63,9 +66,8 @@ def dlSong(source, domain):
 def main():
     reddit = praw.Reddit(client_id=clientid, \
                          client_secret=clientsecret, \
-                         user_agent=uagent) 
+                         user_agent=uagent)
     ctr = 0
-    #subreddits = filter(reddit.subreddit, subs) 
     subreddits = [reddit.subreddit(q) for q in subs]
     for sub in subreddits:
         print sub
@@ -75,15 +77,13 @@ def main():
             songObj = submission
             d = songObj.domain
             u = songObj.url
-            # d is the external site the reddit user submission points too. 
+            # d is the external site the reddit user submission points too.
             if u'youtu' in d:
-                # This includes youtu.be as well as youtube.com 
+                # This includes youtu.be as well as youtube.com
                 print "Adding song " + str(ctr) + " source: " + d
                 ctr += 1
                 dlSong(u, d)
-                
 
 if __name__ == "__main__":
     main()
-    
 
