@@ -83,6 +83,10 @@ def main():
                 print "Adding song " + str(ctr) + " source: " + d
                 ctr += 1
                 dlSong(u, d)
+    with open('log/dl.log', 'w') as logfile:
+        logfile.write("Downloaded {1} new files on {2}.".format( \
+                      str(ctr), 
+                      str(datetime.now()) )
 
 if __name__ == "__main__":
     main()
