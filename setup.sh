@@ -5,14 +5,16 @@ if [ "$(id -u)" -ne 0 ] ; then
     exit 1
 fi
 
-U=[ $SUDO_USER ] && user=$SUDO_USER || user=`who | awk '{print $1}' | head -1`
+[ $SUDO_USER ] && U=$SUDO_USER || U=`who | awk '{print $1}' | head -1`
+echo "Setting up crons for user $U"
 
 # Make mp3 directory
-mkdir /srv/mp3
+mkdir -p /srv/mp3
 chmod 777 /srv/mp3 # We'll be regularly writing to this dir.
 
 # Copy scripts to /opt
 REPO="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo "Copying over executables to /opt/"
 cp -a $REPO /opt/
 chmod +x /opt/setup-disk-radio/*sh
 
