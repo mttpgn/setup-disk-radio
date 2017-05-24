@@ -9,5 +9,5 @@ amixer cset numid=3 1
 while true; do
     NEXTUP=`ls $DIR | shuf -n1`
     echo "Now Playing : https://youtu.be/$NEXTUP : `date`" > $LOGDIR/np.log
-    mplayer $DIR/$NEXTUP
+    mplayer -softvol -softvol-max 300 $DIR/$NEXTUP
 done
